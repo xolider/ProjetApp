@@ -1,6 +1,7 @@
 package projetapp;
 
 import java.awt.*;
+import java.util.Observer;
 
 public interface ISprite {
 
@@ -8,4 +9,9 @@ public interface ISprite {
     int getY();
     Image getImage();
     void loadImage();
+    void setX(int x);
+    void setY(int y);
+    void setObs(Observer obs);
+    Rotation getRotation();
+    void setRotation(Rotation rotation);
 }

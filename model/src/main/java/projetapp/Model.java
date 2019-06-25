@@ -2,19 +2,19 @@ package projetapp;
 
 public class Model implements IModel {
 
-    private ISprite map;
+    private ModelBuilder builder;
 
     public Model() {
-        buildBackground();
+        builder = new ModelBuilder();
     }
 
     @Override
     public ISprite getMap() {
-        return this.map;
+        return this.builder.getBg();
     }
 
-    private void buildBackground() {
-        Sprite sprite = new Sprite("map.png");
-        this.map = sprite;
+    @Override
+    public ISprite getRobot() {
+        return this.builder.getRobot();
     }
 }

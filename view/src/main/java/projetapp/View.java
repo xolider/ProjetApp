@@ -9,6 +9,8 @@ public class View implements IView {
     public View(IModel model) {
         this.model = model;
         this.frame = new Frame(this);
+
+        model.getRobot().setObs(frame.getObserver());
     }
 
     public void setController(IController controller) {

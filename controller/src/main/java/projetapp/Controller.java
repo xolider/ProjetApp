@@ -12,22 +12,36 @@ public class Controller implements IController {
     private IView view;
     private IModel model;
 
+    private RobotMove robotMove;
+
     private static final String PORT_NAME = "/dev/ttyACM0";
 
     public Controller(IView view, IModel model) {
         this.view = view;
         this.model = model;
+        this.robotMove = new RobotMove(this.model.getRobot());
     }
 
     public void start() {
-        getInput();
+        while(true) {
+
+            robotMove.move();
+
+            try {
+
+                Thread.sleep(100);
+            }
+            catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override
     public void orderPerform(char typed) {
         switch (typed) {
-            case 'q':
-                System.exit(0);
+            case 'd':
+                model.getRobot().setX(model.getRobot().getX()+1);
                 break;
         }
     }
