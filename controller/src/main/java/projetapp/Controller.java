@@ -3,7 +3,12 @@ package projetapp;
 import gnu.io.*;
 
 import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.Enumeration;
+
+import com.fazecast.jSerialComm.SerialPort;
 
 public class Controller implements IController {
 
@@ -21,25 +26,11 @@ public class Controller implements IController {
     }
 
     public void start() {
-        Enumeration enumeration = CommPortIdentifier.getPortIdentifiers();
-        final String PORTS[] = {"/dev/ttyACM0", "COM5"};
-        CommPortIdentifier identifier = null;
-        SerialPort serialPort = null;
-        while(enumeration.hasMoreElements()) {
-            identifier = (CommPortIdentifier)enumeration.nextElement();
-            System.out.println(identifier.getName());
-            for(String str: PORTS) {
-                if(identifier.getName().equals(str)) break;
-            }
-        }
-        try {
-            serialPort = (SerialPort)identifier.open(this.getClass().getName(), 2000);
-        }
-        catch (PortInUseException e) {
-            e.printStackTrace();
+        SerialPort[] serials = SerialPort.getCommPorts();
+        for(SerialPort p: serials) {
+        	System.out.println(p.getPortDescription());
         }
         while(true) {
-
             try {
                 Thread.sleep(1000);
             }
