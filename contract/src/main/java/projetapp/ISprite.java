@@ -12,6 +12,4 @@ public interface ISprite {
     void setX(int x);
     void setY(int y);
     void setObs(Observer obs);
-    Rotation getRotation();
-    void setRotation(Rotation rotation);
 }

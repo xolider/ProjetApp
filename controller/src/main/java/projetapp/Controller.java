@@ -3,8 +3,6 @@ package projetapp;
 import gnu.io.*;
 
 import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.Enumeration;
 
 public class Controller implements IController {
@@ -23,17 +21,33 @@ public class Controller implements IController {
     }
 
     public void start() {
+        Enumeration enumeration = CommPortIdentifier.getPortIdentifiers();
+        final String PORTS[] = {"/dev/ttyACM0", "COM5"};
+        CommPortIdentifier identifier = null;
+        SerialPort serialPort = null;
+        while(enumeration.hasMoreElements()) {
+            identifier = (CommPortIdentifier)enumeration.nextElement();
+            System.out.println(identifier.getName());
+            for(String str: PORTS) {
+                if(identifier.getName().equals(str)) break;
+            }
+        }
+        try {
+            serialPort = (SerialPort)identifier.open(this.getClass().getName(), 2000);
+        }
+        catch (PortInUseException e) {
+            e.printStackTrace();
+        }
         while(true) {
 
-            robotMove.move();
-
             try {
-
-                Thread.sleep(100);
+                Thread.sleep(1000);
             }
             catch (InterruptedException e) {
                 e.printStackTrace();
             }
+
+            robotMove.move();
         }
     }
 
@@ -42,6 +56,12 @@ public class Controller implements IController {
         switch (typed) {
             case 'd':
                 model.getRobot().setX(model.getRobot().getX()+1);
+                break;
+            case 's':
+                robotMove.turnRight();
+                break;
+            case 'z':
+                robotMove.turnLeft();
                 break;
         }
     }

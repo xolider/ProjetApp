@@ -7,5 +7,5 @@ public interface IModel {
 
     ISprite getMap();
 
-    ISprite getRobot();
+    IRotateSprite getRobot();
 }

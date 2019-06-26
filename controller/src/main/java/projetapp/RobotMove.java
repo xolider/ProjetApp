@@ -2,9 +2,9 @@ package projetapp;
 
 public class RobotMove {
 
-    private ISprite robot;
+    private IRotateSprite robot;
 
-    protected RobotMove(ISprite robot) {
+    protected RobotMove(IRotateSprite robot) {
         this.robot = robot;
     }
 

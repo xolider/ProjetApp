@@ -2,7 +2,7 @@ package projetapp;
 
 public class ModelBuilder {
 
-    private ISprite robot;
+    private IRotateSprite robot;
     private ISprite bg;
 
     protected ModelBuilder() {
@@ -11,14 +11,14 @@ public class ModelBuilder {
     }
 
     private void buildRobot() {
-        this.robot = new Sprite("robot.png", 0, 0, Rotation.RIGHT);
+        this.robot = new Robot();
     }
 
     private void buildMap() {
         this.bg = new Sprite("map.png");
     }
 
-    public ISprite getRobot() {
+    public IRotateSprite getRobot() {
         return this.robot;
     }
 

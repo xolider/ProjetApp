@@ -2,7 +2,6 @@ package projetapp;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.geom.AffineTransform;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -28,8 +27,6 @@ public class Panel extends JPanel implements Observer {
         ISprite map = view.getModel().getMap();
         ISprite robot = view.getModel().getRobot();
         g.drawImage(map.getImage(), map.getX(), map.getY(), null);
-        g.rotate(robot.getRotation() == Rotation.RIGHT ? 0: robot.getRotation() == Rotation.DOWN ? 1.58 : robot.getRotation() == Rotation.LEFT ?
-                3.16 : 4.67);
-        g.drawImage(robot.getImage(), (robot.getX()-robot.getImage().getWidth(null)/2), (robot.getY()-robot.getImage().getHeight(null)/2), null);
+        g.drawImage(robot.getImage(), (robot.getX()*32-robot.getImage().getWidth(null)/2), (robot.getY()*32-robot.getImage().getHeight(null)/2), null);
     }
 }

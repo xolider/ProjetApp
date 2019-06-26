@@ -14,7 +14,7 @@ public class Model implements IModel {
     }
 
     @Override
-    public ISprite getRobot() {
+    public IRotateSprite getRobot() {
         return this.builder.getRobot();
     }
 }
