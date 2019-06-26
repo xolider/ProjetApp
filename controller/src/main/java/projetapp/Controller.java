@@ -29,6 +29,7 @@ public class Controller implements IController {
             identifier = (CommPortIdentifier)enumeration.nextElement();
             System.out.println(identifier.getName());
             for(String str: PORTS) {
+                System.out.println(str);
                 if(identifier.getName().equals(str)) break;
             }
         }
